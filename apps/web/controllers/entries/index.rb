@@ -8,9 +8,15 @@ module Web::Controllers::Entries
     def call(params)
       
       #@entries = EntryRepository.new.all
-      @entries = EntryRepository.new.least_recent
-      @sort =params[:sort]
+     
+      @sort = params[:sort]
       
+      #most_recent or least_recent
+      # CLEAN this up
+      if @sort == 'most_recent' 
+         @entries = EntryRepository.new.most_recent
+      else  
+         @entries = EntryRepository.new.least_recent
     end
   end
 end
